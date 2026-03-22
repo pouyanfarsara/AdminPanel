@@ -1,9 +1,13 @@
 "use client";
 
 import styles from "./StatCard.module.css";
-import { ArrowUpRight, DollarSign, ShoppingCart, Users, Package } from "lucide-react";
-
-
+import {
+  ArrowUpRight,
+  DollarSign,
+  ShoppingCart,
+  Users,
+  Package,
+} from "lucide-react";
 
 const iconMap = {
   dollar: DollarSign,
@@ -12,19 +16,18 @@ const iconMap = {
   box: Package,
 };
 
-
-type StatItem={
-    icon:"dollar" | "cart" | "users" | "box",
-    color:"green" | "blue" | "purple" | "orange",
-    positive:boolean,
-    change:string,
-    title:string,
-    value:string
-}
+type StatItem = {
+  icon: "dollar" | "cart" | "users" | "box";
+  color: "green" | "blue" | "purple" | "orange";
+  positive: boolean;
+  change: string;
+  title: string;
+  value: string;
+};
 type StatCardProps = {
   item: StatItem;
 };
-export default function StatCard({ item }:StatCardProps) {
+export default function StatCard({ item }: StatCardProps) {
   const Icon = iconMap[item.icon];
 
   return (
@@ -34,7 +37,9 @@ export default function StatCard({ item }:StatCardProps) {
           <Icon size={24} />
         </div>
 
-        <div className={`${styles.change} ${item.positive ? styles.positive : styles.negative}`}>
+        <div
+          className={`${styles.change} ${item.positive ? styles.positive : styles.negative}`}
+        >
           <ArrowUpRight size={18} />
           <span>{item.change}</span>
         </div>

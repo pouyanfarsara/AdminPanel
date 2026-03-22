@@ -1,4 +1,4 @@
-import OrdersPage from "../Components/layout/OrdersPage";
+import OrdersPage from "../Components/orders/OrdersPage";
 
 
 

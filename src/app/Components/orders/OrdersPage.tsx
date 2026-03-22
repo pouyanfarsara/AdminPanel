@@ -1,27 +1,34 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ChangeEvent } from "react";
 import { Search, Filter, Eye, Truck } from "lucide-react";
 import styles from "./OrdersPage.module.css";
 
-type orderData = {
-  id: string;
-  customer: string;
-  email: string;
-  date: string;
-  items: number;
-  total: number;
-  status: orderstatustype;
-};
-
-type orderstatustype =
+type OrderStatus =
   | "Pending"
   | "Processing"
   | "Shipped"
   | "Delivered"
   | "Cancelled";
 
-const ordersData: orderData[] = [
+type Order = {
+  id: string;
+  customer: string;
+  email: string;
+  date: string;
+  items: number;
+  total: number;
+  status: OrderStatus;
+};
+
+type OrderTab =
+  | "All Orders"
+  | "Pending"
+  | "Processing"
+  | "Shipped"
+  | "Delivered";
+
+const ordersData: Order[] = [
   {
     id: "#12345",
     customer: "John Doe",
@@ -68,12 +75,7 @@ const ordersData: orderData[] = [
     status: "Cancelled",
   },
 ];
-type OrderTab =
-  | "All Orders"
-  | "Pending"
-  | "Processing"
-  | "Shipped"
-  | "Delivered";
+
 const tabs: OrderTab[] = [
   "All Orders",
   "Pending",
@@ -83,10 +85,10 @@ const tabs: OrderTab[] = [
 ];
 
 export default function OrdersPage() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string>("");
   const [activeTab, setActiveTab] = useState<OrderTab>("All Orders");
 
-  const filteredOrders = useMemo(() => {
+  const filteredOrders = useMemo((): Order[] => {
     return ordersData.filter((order) => {
       const matchesSearch =
         order.id.toLowerCase().includes(search.toLowerCase()) ||
@@ -100,20 +102,18 @@ export default function OrdersPage() {
     });
   }, [search, activeTab]);
 
- const getStatusClass = (status: orderstatustype): string => {
-  switch (status) {
-    case "Delivered":
-      return styles.delivered;
-    case "Processing":
-      return styles.processing;
-    case "Shipped":
-      return styles.shipped;
-    case "Pending":
-      return styles.pending;
-    case "Cancelled":
-      return styles.cancelled;
-  }
-};
+  const getStatusClass = (status: OrderStatus): string => {
+    if (status === "Delivered") return styles.delivered;
+    if (status === "Processing") return styles.processing;
+    if (status === "Shipped") return styles.shipped;
+    if (status === "Pending") return styles.pending;
+    return styles.cancelled;
+  };
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <section className={styles.ordersPage}>
       <div className={styles.topBar}>
@@ -132,6 +132,7 @@ export default function OrdersPage() {
                 activeTab === tab ? styles.activeTab : ""
               }`}
               onClick={() => setActiveTab(tab)}
+              type="button"
             >
               {tab}
             </button>
@@ -145,11 +146,11 @@ export default function OrdersPage() {
               type="text"
               placeholder="Search orders by ID, customer, email..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={handleSearchChange}
             />
           </div>
 
-          <button className={styles.filterButton}>
+          <button className={styles.filterButton} type="button">
             <Filter size={18} />
             Filters
           </button>
@@ -181,17 +182,17 @@ export default function OrdersPage() {
 
               <span
                 className={`${styles.statusBadge} ${getStatusClass(
-                  order.status,
+                  order.status
                 )}`}
               >
                 {order.status}
               </span>
 
               <div className={styles.actions}>
-                <button>
+                <button type="button">
                   <Eye size={18} />
                 </button>
-                <button>
+                <button type="button">
                   <Truck size={18} />
                 </button>
               </div>
@@ -203,8 +204,8 @@ export default function OrdersPage() {
           <p>Showing {filteredOrders.length} orders</p>
 
           <div className={styles.pagination}>
-            <button>Previous</button>
-            <button>Next</button>
+            <button type="button">Previous</button>
+            <button type="button">Next</button>
           </div>
         </div>
       </div>

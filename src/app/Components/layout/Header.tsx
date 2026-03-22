@@ -32,6 +32,8 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
+
+
       <div className={styles.searchBox}>
         <Search size={18} />
         <input
@@ -44,6 +46,7 @@ export default function Header() {
       </div>
 
       <div className={styles.rightSide}>
+
         <button className={styles.notification} onClick={handleopennotif}>
           <Bell size={20} />
           <span>3</span>
@@ -85,6 +88,7 @@ export default function Header() {
             </div>
           )}
         </div>
+        
       </div>
     </header>
   );

@@ -1,15 +1,14 @@
 import styles from "./RevenueChart.module.css";
 
-type RevenueItem={
-    month:string,
-    value:number,
+type RevenueItem = {
+  month: string;
+  value: number;
+};
+type RevenueChartProps = {
+  data: RevenueItem[];
+};
 
-}
- type RevenueChartProps={
-    data:RevenueItem[]
- }
-
-export default function RevenueChart({ data }:RevenueChartProps) {
+export default function RevenueChart({ data }: RevenueChartProps) {
   return (
     <div className={styles.card}>
       <h3>Revenue Overview</h3>

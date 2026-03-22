@@ -107,14 +107,18 @@ export default function ProductsPage() {
     <section className={styles.productsPage}>
       <div className={styles.topBar}>
         <div>
-          <h1>Product Management</h1>
-          <p>Manage your product catalog, inventory, and categories</p>
+          <h1 className="whitespace-nowrap">Product Management</h1>
+          <p className="whitespace-nowrap">
+            Manage your product catalog, inventory, and categories
+          </p>
         </div>
 
-        <button className={styles.addButton}>
-          <Plus size={18} />
-          Add Product
-        </button>
+        <div>
+          <button className={styles.addButton}>
+            <Plus size={18} />
+            Add Product
+          </button>
+        </div>
       </div>
 
       <div className={styles.tableWrapper}>
@@ -135,30 +139,28 @@ export default function ProductsPage() {
           </button>
         </div>
 
-        {/* HEADER */}
         <div className={styles.tableHeader}>
           <span>Product</span>
           <span>SKU</span>
           <span>Category</span>
-          <span>Price</span>
-          <span>Stock</span>
-          <span>Status</span>
-          <span>Actions</span>
+          <span className="hidden sm:block">Price</span>
+          <span className="hidden sm:block">Stock</span>
+          <span className="hidden sm:block">Status</span>
+          <span className="hidden sm:block">Actions</span>
         </div>
 
-        {/* BODY */}
         <div className={styles.tableBody}>
           {filteredProducts.map((product) => (
             <div className={styles.tableRow} key={product.id}>
               <div className={styles.productCell}>
                 <div className={styles.productIcon}>{product.icon}</div>
-                <span>{product.name}</span>
+                <span className="whitespace-nowrap">{product.name}</span>
               </div>
 
               <span>{product.sku}</span>
               <span>{product.category}</span>
-              <span>${product.price}</span>
-              <span>{product.stock}</span>
+              <span className="hidden sm:block">${product.price}</span>
+              <span className="hidden sm:block">{product.stock}</span>
 
               <span
                 className={`${styles.status} ${
@@ -186,7 +188,6 @@ export default function ProductsPage() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

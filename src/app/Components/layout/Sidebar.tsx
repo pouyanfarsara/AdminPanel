@@ -1,5 +1,7 @@
 "use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import styles from "./Sidebar.module.css";
 import {
   LayoutDashboard,
@@ -12,7 +14,15 @@ import {
   ShoppingBag,
   ChevronLeft,
 } from "lucide-react";
-const menuItems = [
+
+type MenuItem = {
+  id: number;
+  label: string;
+  href: string;
+  icon: React.ComponentType<{ size?: number }>;
+};
+
+const menuItems: MenuItem[] = [
   { id: 1, label: "Dashboard", icon: LayoutDashboard, href: "/" },
   { id: 2, label: "Products", icon: Package, href: "/products" },
   { id: 3, label: "Orders", icon: ShoppingCart, href: "/orders" },
@@ -22,15 +32,46 @@ const menuItems = [
   { id: 7, label: "Settings", icon: Settings, href: "/" },
 ];
 
+const COLLAPSE_BREAKPOINT = 1000;
+const ICON_ONLY_BREAKPOINT = 900;
+
 export default function Sidebar() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isIconOnly, setIsIconOnly] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+
+      setIsCollapsed(width < COLLAPSE_BREAKPOINT);
+      setIsIconOnly(width < ICON_ONLY_BREAKPOINT);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const shouldHideLabels = isCollapsed || isIconOnly;
+
   return (
-    <aside className={styles.sidebar}>
+    <aside
+      className={`${styles.sidebar} ${
+        shouldHideLabels ? styles.sidebarCollapsed : ""
+      }`}
+    >
       <div>
         <div className={styles.logoBox}>
           <div className={styles.logoIcon}>
             <ShoppingBag size={22} />
           </div>
-          <span>Admin Panel</span>
+
+          {!isIconOnly && !isCollapsed && (
+            <span className={styles.logoText}>Admin Panel</span>
+          )}
         </div>
 
         <nav className={styles.nav}>
@@ -38,17 +79,30 @@ export default function Sidebar() {
             const Icon = item.icon;
 
             return (
-              <Link key={item.id} href={item.href} className={styles.navItem}>
+              <Link
+                key={item.id}
+                href={item.href}
+                className={styles.navItem}
+                title={shouldHideLabels ? item.label : ""}
+              >
                 <Icon size={20} />
-                <span>{item.label}</span>
+                {!shouldHideLabels && <span>{item.label}</span>}
               </Link>
             );
           })}
         </nav>
       </div>
 
-      <button className={styles.collapseBtn}>
-        <ChevronLeft size={20} />
+      <button
+        type="button"
+        className={styles.collapseBtn}
+        onClick={() => setIsCollapsed((prev) => !prev)}
+        aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+      >
+        <ChevronLeft
+          size={20}
+          className={shouldHideLabels ? styles.rotatedIcon : ""}
+        />
       </button>
     </aside>
   );

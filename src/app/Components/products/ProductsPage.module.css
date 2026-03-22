@@ -163,4 +163,18 @@
 
 .outOfStock {
   background: #fee2e2;
-  color: #dc2626;}
+  color: #dc2626;
+}
+
+@media (max-width: 700px) {
+  .topBar {
+    flex-direction: column;
+  }
+  .addButton {
+    width: 100%;
+  }
+  .status {
+    display: none;
+  }
+  
+}
