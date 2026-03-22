@@ -14,7 +14,7 @@ Designed to simulate a real-world admin panel experience with scalable architect
 - 🎯 Dynamic routing (Next.js App Router)
 - 🧩 Reusable components
 - 🧠 Strong TypeScript typing (union types, state typing)
-- 📱 Responsive layout (in progress)
+- 📱 - Desktop-first design (optimized for large screens)
 
 ---
 
