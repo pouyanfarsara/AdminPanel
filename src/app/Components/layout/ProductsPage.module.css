@@ -1,0 +1,166 @@
+.productsPage {
+  padding: 32px;
+  background: #f8fafc;
+  min-height: calc(100vh - 88px);
+}
+
+.topBar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.topBar h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.topBar p {
+  font-size: 18px;
+  color: #64748b;
+}
+
+.addButton {
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tableWrapper {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.tableActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.searchBox {
+  flex: 1;
+  max-width: 1120px;
+  height: 52px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #94a3b8;
+}
+
+.searchBox input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.filterButton {
+  height: 52px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2.6fr 0.8fr 0.9fr 0.7fr 0.6fr 0.9fr 0.7fr;
+  gap: 20px;
+  padding: 0 16px 18px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 15px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.tableBody {
+  width: 100%;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2.6fr 0.8fr 0.9fr 0.7fr 0.6fr 0.9fr 0.7fr;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  font-size: 15px;
+}
+
+.productCell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.productCell span {
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.productIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.status {
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.inStock {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.lowStock {
+  background: #fef3c7;
+  color: #ca8a04;
+}
+
+.outOfStock {
+  background: #fee2e2;
+  color: #dc2626;}
