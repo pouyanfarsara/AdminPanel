@@ -1,4 +1,44 @@
-export const statsData = [
+// ================== TYPES ==================
+
+export type StatItem = {
+  id: number;
+  title: string;
+  value: string;
+  change: string;
+  positive: boolean;
+  icon: "dollar" | "cart" | "users" | "box";
+  color: "green" | "blue" | "purple" | "orange";
+};
+
+export type RevenueItem = {
+  month: string;
+  value: number;
+};
+
+export type SalesItem = {
+  id: number;
+  name: string;
+  percent: number;
+  color: string; // چون hex استفاده کردی
+};
+
+export type ProductItem = {
+  id: number;
+  name: string;
+  sales: number;
+  amount: string;
+};
+
+export type OrderItem = {
+  id: string;
+  customer: string;
+  price: string;
+  status: "Delivered" | "Processing" | "Shipped" | "Pending";
+};
+
+// ================== DATA ==================
+
+export const statsData: StatItem[] = [
   {
     id: 1,
     title: "Total Revenue",
@@ -8,9 +48,9 @@ export const statsData = [
     icon: "dollar",
     color: "green",
   },
-] as const;
+];
 
-export const revenueData = [
+export const revenueData: RevenueItem[] = [
   { month: "Jan", value: 35 },
   { month: "Feb", value: 58 },
   { month: "Mar", value: 45 },
@@ -20,14 +60,14 @@ export const revenueData = [
   { month: "Jul", value: 79 },
 ];
 
-export const salesCategories = [
+export const salesCategories: SalesItem[] = [
   { id: 1, name: "Electronics", percent: 45, color: "#2563eb" },
   { id: 2, name: "Fashion", percent: 25, color: "#9333ea" },
   { id: 3, name: "Home", percent: 15, color: "#f97316" },
   { id: 4, name: "Sports", percent: 15, color: "#16a34a" },
 ];
 
-export const topSellingProducts = [
+export const topSellingProducts: ProductItem[] = [
   { id: 1, name: "Wireless Headphones", sales: 1245, amount: "$124,500" },
   { id: 2, name: "Smart Watch", sales: 982, amount: "$196,400" },
   { id: 3, name: "Laptop Stand", sales: 856, amount: "$42,800" },
@@ -35,7 +75,7 @@ export const topSellingProducts = [
   { id: 5, name: "Phone Case", sales: 623, amount: "$18,690" },
 ];
 
-export const recentOrders = [
+export const recentOrders: OrderItem[] = [
   { id: "#12345", customer: "John Doe", price: "$129.99", status: "Delivered" },
   { id: "#12344", customer: "Jane Smith", price: "$89.99", status: "Processing" },
   { id: "#12343", customer: "Mike Johnson", price: "$199.99", status: "Shipped" },

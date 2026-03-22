@@ -1,17 +1,17 @@
 import styles from "./SalesCategory.module.css";
 
-type SalesItem={
-    id:number,
-    name:string,
-    color:"red"|"green",
-    percent:number,
-    
-}
-type SalesCategoryProps={
-    items:SalesItem[]
-}
+export type SalesItem = {
+  id: number;
+  name: string;
+  color: string;
+  percent: number;
+};
 
-export default function SalesCategory({ items }:SalesCategoryProps) {
+type SalesCategoryProps = {
+  items: SalesItem[];
+};
+
+export default function SalesCategory({ items }: SalesCategoryProps) {
   return (
     <div className={styles.card}>
       <h3>Sales by Category</h3>
