@@ -8,34 +8,7 @@ export const statsData = [
     icon: "dollar",
     color: "green",
   },
-  {
-    id: 2,
-    title: "Orders",
-    value: "2,345",
-    change: "+15.3%",
-    positive: true,
-    icon: "cart",
-    color: "blue",
-  },
-  {
-    id: 3,
-    title: "Active Users",
-    value: "12,543",
-    change: "+8.2%",
-    positive: true,
-    icon: "users",
-    color: "purple",
-  },
-  {
-    id: 4,
-    title: "Products",
-    value: "892",
-    change: "-3.1%",
-    positive: false,
-    icon: "box",
-    color: "orange",
-  },
-];
+] as const;
 
 export const revenueData = [
   { month: "Jan", value: 35 },
