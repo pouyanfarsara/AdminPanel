@@ -71,7 +71,8 @@ export default function Sidebar() {
       <div>
        
         <div className={styles.logoBox}>
-          <div className={styles.logoIcon}>
+          <div className={styles.logoIcon}  onClick={() => setIsCollapsed((prev) => !prev)}
+        aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}>
             <ShoppingBag size={22} />
           </div>
 
