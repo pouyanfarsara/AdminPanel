@@ -26,7 +26,7 @@ Designed to simulate a real-world admin panel experience with scalable architect
 
 | Orders | Dark Mode |
 
-| ![](/screenshots/orders.jng
+![Cart](./screenshots/chrt.jng)
 
 ---
 
