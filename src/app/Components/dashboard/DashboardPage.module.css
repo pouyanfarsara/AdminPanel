@@ -1,7 +1,8 @@
 .dashboardLayout {
   display: flex;
   min-height: 100vh;
-  background: #f5f7fb;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .mainSection {
@@ -9,10 +10,14 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .content {
   padding: 32px;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .pageTitle {
@@ -22,13 +27,13 @@
 .pageTitle h1 {
   font-size: 24px;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text);
   margin-bottom: 10px;
 }
 
 .pageTitle p {
   font-size: 15px;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .statsGrid {

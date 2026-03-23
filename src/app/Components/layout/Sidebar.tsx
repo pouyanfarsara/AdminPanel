@@ -13,7 +13,10 @@ import {
   Settings,
   ShoppingBag,
   ChevronLeft,
+  Sun,
+  Moon,
 } from "lucide-react";
+import { useTheme } from "@/app/context/ThemeContext";
 
 type MenuItem = {
   id: number;
@@ -38,6 +41,8 @@ const ICON_ONLY_BREAKPOINT = 900;
 export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isIconOnly, setIsIconOnly] = useState(false);
+
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,6 +69,7 @@ export default function Sidebar() {
       }`}
     >
       <div>
+       
         <div className={styles.logoBox}>
           <div className={styles.logoIcon}>
             <ShoppingBag size={22} />
@@ -74,6 +80,7 @@ export default function Sidebar() {
           )}
         </div>
 
+      
         <nav className={styles.nav}>
           {menuItems.map((item) => {
             const Icon = item.icon;
@@ -90,9 +97,25 @@ export default function Sidebar() {
               </Link>
             );
           })}
+
+          
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className={styles.navItem}
+            title={shouldHideLabels ? "Toggle theme" : ""}
+          >
+            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            {!shouldHideLabels && (
+              <span>
+                {theme === "dark" ? "Light Mode" : "Dark Mode"}
+              </span>
+            )}
+          </button>
         </nav>
       </div>
 
+      
       <button
         type="button"
         className={styles.collapseBtn}

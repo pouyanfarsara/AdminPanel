@@ -1,15 +1,19 @@
 .sidebar {
   width: 260px;
   min-height: 100vh;
-  background: #fff;
-  border-right: 1px solid #e5e7eb;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
   padding: 24px 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: width 0.3s ease, padding 0.3s ease;
+  transition:
+    width 0.3s ease,
+    padding 0.3s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
   overflow: hidden;
-  flex-shrink: 0;
 }
 
 .sidebarCollapsed {
@@ -40,7 +44,7 @@
 .logoText {
   font-size: 22px;
   font-weight: 700;
-  color: #111827;
+  color: var(--text);
   white-space: nowrap;
 }
 
@@ -54,17 +58,25 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  width: 100%;
   text-decoration: none;
-  color: #374151;
+  color: var(--text-muted);
   padding: 12px 14px;
   border-radius: 12px;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
   white-space: nowrap;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font: inherit;
 }
 
 .navItem:hover {
-  background: #f3f4f6;
-  color: #111827;
+  background: var(--hover);
+  color: var(--text);
 }
 
 .sidebarCollapsed .navItem {
@@ -75,15 +87,23 @@
 .collapseBtn {
   width: 44px;
   height: 44px;
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   align-self: center;
-  flex-shrink: 0;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.collapseBtn:hover {
+  background: var(--hover);
 }
 
 .collapseBtn svg {
@@ -99,41 +119,21 @@
     width: 88px;
     padding: 24px 12px;
   }
-
-  .logoBox {
-    justify-content: center;
-  }
 }
 
 @media (max-width: 699px) {
   .sidebar {
-    width: 88px;
-    min-height: 100vh;
-    padding: 20px 10px;
-    border-right: 1px solid #e5e7eb;
-    border-bottom: none;
+    width: 100%;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
   }
 
   .sidebarCollapsed {
-    width: 60px;
+    width: 100%;
   }
 
   .logoBox {
-    margin-bottom: 20px;
-    justify-content: center;
-  }
-
-  .nav {
-    gap: 6px;
-  }
-
-  .navItem {
-    justify-content: center;
-    padding: 10px 0;
-  }
-
-  .collapseBtn {
-    width: 40px;
-    height: 40px;
+    margin-bottom: 0;
   }
 }
