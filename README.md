@@ -21,12 +21,12 @@ Designed to simulate a real-world admin panel experience with scalable architect
 
 ## 📸 Screenshots
 
-| Dashboard | Products |
-| ![](/screenshots/dashboard.jpg) | ![](/screenshots/product.jpg) |
+| Dashboard |
+| ![](/screenshots/dashboard.jpg)
 
 | Orders | Dark Mode |
 
-![Cart](/screenshots/charts.jng)
+(/screenshots/charts.jng)
 
 ---
 
