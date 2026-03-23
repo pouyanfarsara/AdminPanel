@@ -11,10 +11,22 @@ Designed to simulate a real-world admin panel experience with scalable architect
 - 🔍 Search functionality
 - 📦 Product management page
 - 🧾 Orders management page
+- 🌙 Dark mode support (Context + CSS variables)
 - 🎯 Dynamic routing (Next.js App Router)
 - 🧩 Reusable components
 - 🧠 Strong TypeScript typing (union types, state typing)
-- 📱 - Desktop-first design (optimized for large screens)
+- 📱 Desktop-first design (optimized for large screens)
+
+---
+
+## 📸 Screenshots
+
+| Dashboard | Products |
+| ![](/screenshots/dashboard.jng) | ![](/screenshots/product.jng) |
+
+| Orders | Dark Mode |
+
+| ![](/screenshots/orders.jng
 
 ---
 
@@ -25,6 +37,7 @@ Designed to simulate a real-world admin panel experience with scalable architect
 - 🔷 **TypeScript**
 - 🎨 **CSS Modules**
 - 🧱 **Lucide Icons**
+- 🎨 **Material UI (Dialog / Modal)**
 
 ---
 
@@ -35,8 +48,10 @@ src/
   app/
     layout.tsx        # Shared layout (Sidebar + Header)
     page.tsx          # Dashboard
+
     products/
       page.tsx
+
     orders/
       page.tsx
 
