@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 
 import styles from "./ProductsPage.module.css";
+import Button from "../button/Button";
+import ProductModal from "../addproductmodal";
 
 type ProductStatus = "In Stock" | "Low Stock" | "Out of Stock";
 
@@ -96,6 +98,7 @@ const productsData: Product[] = [
 
 export default function ProductsPage() {
   const [search, setSearch] = useState("");
+  const [open, setOpen] = useState(false);
 
   const filteredProducts = useMemo(() => {
     return productsData.filter((product) =>
@@ -114,10 +117,11 @@ export default function ProductsPage() {
         </div>
 
         <div>
-          <button className={styles.addButton}>
+          <Button className={styles.addButton} onClick={() => setOpen(true)}>
             <Plus size={18} />
             Add Product
-          </button>
+          </Button>
+          <ProductModal open={open} onClose={() => setOpen(false)} />
         </div>
       </div>
 
@@ -133,10 +137,10 @@ export default function ProductsPage() {
             />
           </div>
 
-          <button className={styles.filterButton}>
+          <Button className={styles.filterButton}>
             <Filter size={18} />
             Filters
-          </button>
+          </Button>
         </div>
 
         <div className={styles.tableHeader}>
@@ -175,15 +179,15 @@ export default function ProductsPage() {
               </span>
 
               <div className={styles.actions}>
-                <button>
+                <Button>
                   <Pencil size={18} />
-                </button>
-                <button>
+                </Button>
+                <Button>
                   <Trash2 size={18} />
-                </button>
-                <button>
+                </Button>
+                <Button>
                   <MoreVertical size={18} />
-                </button>
+                </Button>
               </div>
             </div>
           ))}

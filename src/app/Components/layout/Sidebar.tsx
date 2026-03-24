@@ -17,6 +17,7 @@ import {
   Moon,
 } from "lucide-react";
 import { useTheme } from "@/app/context/ThemeContext";
+import Button from "../button/Button";
 
 type MenuItem = {
   id: number;
@@ -69,10 +70,12 @@ export default function Sidebar() {
       }`}
     >
       <div>
-       
         <div className={styles.logoBox}>
-          <div className={styles.logoIcon}  onClick={() => setIsCollapsed((prev) => !prev)}
-        aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}>
+          <div
+            className={styles.logoIcon}
+            onClick={() => setIsCollapsed((prev) => !prev)}
+            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
             <ShoppingBag size={22} />
           </div>
 
@@ -81,7 +84,6 @@ export default function Sidebar() {
           )}
         </div>
 
-      
         <nav className={styles.nav}>
           {menuItems.map((item) => {
             const Icon = item.icon;
@@ -99,8 +101,7 @@ export default function Sidebar() {
             );
           })}
 
-          
-          <button
+          <Button
             type="button"
             onClick={toggleTheme}
             className={styles.navItem}
@@ -108,26 +109,22 @@ export default function Sidebar() {
           >
             {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             {!shouldHideLabels && (
-              <span>
-                {theme === "dark" ? "Light Mode" : "Dark Mode"}
-              </span>
+              <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
             )}
-          </button>
+          </Button>
         </nav>
       </div>
 
-      
-      <button
-        type="button"
+      <Button
         className={styles.collapseBtn}
         onClick={() => setIsCollapsed((prev) => !prev)}
-        aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
+        
         <ChevronLeft
           size={20}
           className={shouldHideLabels ? styles.rotatedIcon : ""}
         />
-      </button>
+      </Button>
     </aside>
   );
 }

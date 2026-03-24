@@ -3,6 +3,7 @@
 import { useMemo, useState, type ChangeEvent } from "react";
 import { Search, Filter, Eye, Truck } from "lucide-react";
 import styles from "./OrdersPage.module.css";
+import Button from "../button/Button";
 
 type OrderStatus =
   | "Pending"
@@ -126,7 +127,7 @@ export default function OrdersPage() {
       <div className={styles.tableWrapper}>
         <div className={styles.tabs}>
           {tabs.map((tab) => (
-            <button
+            <Button
               key={tab}
               className={`${styles.tabButton} ${
                 activeTab === tab ? styles.activeTab : ""
@@ -135,7 +136,7 @@ export default function OrdersPage() {
               type="button"
             >
               {tab}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -150,10 +151,10 @@ export default function OrdersPage() {
             />
           </div>
 
-          <button className={styles.filterButton} type="button">
+          <Button className={styles.filterButton} type="button">
             <Filter size={18} />
             Filters
-          </button>
+          </Button>
         </div>
 
         <div className={styles.tableHeader}>
@@ -189,12 +190,12 @@ export default function OrdersPage() {
               </span>
 
               <div className={styles.actions}>
-                <button type="button">
+                <Button type="button">
                   <Eye size={18} />
-                </button>
-                <button type="button">
+                </Button>
+                <Button type="button">
                   <Truck size={18} />
-                </button>
+                </Button>
               </div>
             </div>
           ))}
@@ -204,8 +205,8 @@ export default function OrdersPage() {
           <p>Showing {filteredOrders.length} orders</p>
 
           <div className={styles.pagination}>
-            <button type="button">Previous</button>
-            <button type="button">Next</button>
+            <Button type="button">Previous</Button>
+            <Button type="button">Next</Button>
           </div>
         </div>
       </div>

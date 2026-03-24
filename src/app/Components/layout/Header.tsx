@@ -10,6 +10,7 @@ import {
   Search,
   UserRound,
 } from "lucide-react";
+import Button from "../button/Button";
 
 export default function Header() {
   const [search, setSearch] = useState<string>("");
@@ -32,8 +33,6 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-
-
       <div className={styles.searchBox}>
         <Search size={18} />
         <input
@@ -46,8 +45,7 @@ export default function Header() {
       </div>
 
       <div className={styles.rightSide}>
-
-        <button className={styles.notification} onClick={handleopennotif}>
+        <Button className={styles.notification} onClick={handleopennotif}>
           <Bell size={20} />
           <span>3</span>
           {opennotif && (
@@ -65,7 +63,7 @@ export default function Header() {
               </p>
             </div>
           )}
-        </button>
+        </Button>
 
         <div className={styles.profile} onClick={handleDropdown}>
           <div className={styles.avatar}>
@@ -88,7 +86,6 @@ export default function Header() {
             </div>
           )}
         </div>
-        
       </div>
     </header>
   );
