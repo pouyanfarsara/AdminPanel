@@ -1,6 +1,6 @@
 "use client";
-
-import { useMemo, useState } from "react";
+import toast from "react-hot-toast";
+import { useMemo, useState ,useEffect} from "react";
 import {
   Laptop,
   Headphones,
@@ -99,13 +99,92 @@ const productsData: Product[] = [
 export default function ProductsPage() {
   const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState("");
+const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+async function handleDeleteProduct(id: number) {
+  toast((t) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <span>Are you sure you want to delete?</span>
+
+      <div style={{ display: "flex", gap: 8 }}>
+        <button
+          style={{
+            background: "red",
+            color: "white",
+            padding: "4px 8px",
+            borderRadius: 4,
+          }}
+          onClick={async () => {
+            toast.dismiss(t.id);
+
+            const res = await fetch(`/api/products?id=${id}`, {
+              method: "DELETE",
+            });
+
+            if (!res.ok) {
+              toast.error("Failed to delete product");
+              return;
+            }
+
+            toast.success("Product deleted");
+            fetchProducts();
+          }}
+        >
+          Delete
+        </button>
+
+        <button
+          style={{
+            background: "gray",
+            color: "white",
+            padding: "4px 8px",
+            borderRadius: 4,
+          }}
+          onClick={() => toast.dismiss(t.id)}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  ));
+}
+async function fetchProducts() {
+  try {
+    setLoading(true);
+
+    const res = await fetch("/api/products");
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch products");
+    }
+
+    const data = await res.json();
+    setProducts(data);
+  } catch {
+    setError("Something went wrong while loading products");
+  } finally {
+    setLoading(false);
+  }
+}
+useEffect(() => {
+  fetchProducts();
+}, []);
 
   const filteredProducts = useMemo(() => {
-    return productsData.filter((product) =>
+    return products.filter((product) =>
       product.name.toLowerCase().includes(search.toLowerCase()),
     );
-  }, [search]);
+  }, [search,products]);
 
+  if (loading) {
+  return <p>Loading products...</p>;
+}
+
+if (error) {
+  return <p>{error}</p>;
+}
   return (
     <section className={styles.productsPage}>
       <div className={styles.topBar}>
@@ -117,11 +196,26 @@ export default function ProductsPage() {
         </div>
 
         <div>
-          <Button className={styles.addButton} onClick={() => setOpen(true)}>
-            <Plus size={18} />
-            Add Product
-          </Button>
-          <ProductModal open={open} onClose={() => setOpen(false)} />
+ <Button
+  className={styles.addButton}
+  onClick={() => {
+    setEditingProduct(null);
+    setOpen(true);
+  }}
+>
+  <Plus size={18} />
+  Add Product
+</Button>
+
+<ProductModal
+  open={open}
+  onClose={() => {
+    setOpen(false);
+    setEditingProduct(null);
+  }}
+  onSuccess={fetchProducts}
+  productToEdit={editingProduct}
+/>
         </div>
       </div>
 
@@ -154,45 +248,23 @@ export default function ProductsPage() {
         </div>
 
         <div className={styles.tableBody}>
-          {filteredProducts.map((product) => (
-            <div className={styles.tableRow} key={product.id}>
-              <div className={styles.productCell}>
-                <div className={styles.productIcon}>{product.icon}</div>
-                <span className="whitespace-nowrap">{product.name}</span>
-              </div>
-
-              <span>{product.sku}</span>
-              <span>{product.category}</span>
-              <span className="hidden sm:block">${product.price}</span>
-              <span className="hidden sm:block">{product.stock}</span>
-
-              <span
-                className={`${styles.status} ${
-                  product.status === "In Stock"
-                    ? styles.inStock
-                    : product.status === "Low Stock"
-                      ? styles.lowStock
-                      : styles.outOfStock
-                }`}
-              >
-                {product.status}
-              </span>
-
-              <div className={styles.actions}>
-                <Button>
-                  <Pencil size={18} />
-                </Button>
-                <Button>
-                  <Trash2 size={18} />
-                </Button>
-                <Button>
-                  <MoreVertical size={18} />
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
+  {filteredProducts.length === 0 ? (
+    <div className={styles.emptyState}>
+      <p>No products found.</p>
+      <span>Try changing your search or add a new product.</span>
+    </div>
+  ) : (
+    filteredProducts.map((product) => (
+      <div className={styles.tableRow} key={product.id}>
+        {/* همون کد قبلی محصول */}
+      </div>
+    ))
+  )}
+</div>
       </div>
     </section>
   );
 }
+
+
+

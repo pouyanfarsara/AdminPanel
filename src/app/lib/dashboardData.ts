@@ -81,3 +81,36 @@ export const recentOrders: OrderItem[] = [
   { id: "#12343", customer: "Mike Johnson", price: "$199.99", status: "Shipped" },
   { id: "#12342", customer: "Sarah Williams", price: "$59.99", status: "Pending" },
 ];
+
+
+export type Product = {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  stock: number;
+};
+
+export const products: Product[] = [
+  {
+    id: 1,
+    name: "Wireless Headphones",
+    category: "Electronics",
+    price: 99,
+    stock: 24,
+  },
+  {
+    id: 2,
+    name: "Smart Watch",
+    category: "Electronics",
+    price: 199,
+    stock: 12,
+  },
+  {
+    id: 3,
+    name: "Laptop Stand",
+    category: "Accessories",
+    price: 49,
+    stock: 35,
+  },
+];

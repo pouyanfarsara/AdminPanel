@@ -1,8 +1,10 @@
 .ordersPage {
+  width: 100%;
   padding: 32px;
   background: var(--bg);
   min-height: calc(100vh - 88px);
   color: var(--text);
+  overflow-x: hidden;
 }
 
 .topBar {
@@ -10,7 +12,8 @@
 }
 
 .topBar h1 {
-  font-size: 28px;
+  font-size: 32px;
+  line-height: 1.2;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 10px;
@@ -18,10 +21,12 @@
 
 .topBar p {
   font-size: 16px;
+  line-height: 1.5;
   color: var(--text-muted);
 }
 
 .tableWrapper {
+  width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 24px;
@@ -35,8 +40,10 @@
   margin-bottom: 24px;
   background: var(--surface-soft);
   width: fit-content;
+  max-width: 100%;
   padding: 4px;
   border-radius: 14px;
+  overflow-x: auto;
 }
 
 .tabButton {
@@ -48,6 +55,7 @@
   font-size: 15px;
   font-weight: 500;
   color: var(--text);
+  white-space: nowrap;
 }
 
 .activeTab {
@@ -65,24 +73,34 @@
 
 .searchBox {
   flex: 1;
-  height: 52px;
-  border-radius: 14px;
+  min-width: 0;
+  height: 60px;
+  border-radius: 16px;
   background: var(--surface-soft);
   border: 1px solid var(--border);
-  padding: 0 16px;
+  padding: 0 18px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.searchBox:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  background: var(--surface);
 }
 
 .searchBox input {
   width: 100%;
+  min-width: 0;
   border: none;
   outline: none;
   background: transparent;
   color: var(--text);
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .searchBox input::placeholder {
@@ -90,9 +108,9 @@
 }
 
 .filterButton {
-  height: 52px;
+  height: 60px;
   padding: 0 18px;
-  border-radius: 14px;
+  border-radius: 16px;
   border: 1px solid var(--border);
   background: var(--surface);
   display: flex;
@@ -102,11 +120,12 @@
   font-size: 15px;
   font-weight: 500;
   color: var(--text);
+  white-space: nowrap;
 }
 
 .tableHeader {
   display: grid;
-  grid-template-columns: 1fr 1.6fr 1fr 0.7fr 0.9fr 1fr 0.7fr;
+  grid-template-columns: minmax(100px, 1fr) minmax(180px, 1.6fr) 1fr 0.7fr 0.9fr 1fr 0.7fr;
   gap: 20px;
   padding: 0 16px 18px;
   border-bottom: 1px solid var(--border);
@@ -115,9 +134,13 @@
   color: var(--text-muted);
 }
 
+.tableBody {
+  width: 100%;
+}
+
 .tableRow {
   display: grid;
-  grid-template-columns: 1fr 1.6fr 1fr 0.7fr 0.9fr 1fr 0.7fr;
+  grid-template-columns: minmax(100px, 1fr) minmax(180px, 1.6fr) 1fr 0.7fr 0.9fr 1fr 0.7fr;
   gap: 20px;
   align-items: center;
   padding: 22px 16px;
@@ -126,21 +149,32 @@
   font-size: 15px;
 }
 
+.tableRow:last-child {
+  border-bottom: none;
+}
+
 .customerCell {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .customerCell strong {
   font-size: 15px;
   font-weight: 500;
   color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .customerCell p {
   font-size: 14px;
   color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .statusBadge {
@@ -149,6 +183,7 @@
   border-radius: 999px;
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .delivered {
@@ -183,8 +218,11 @@
 }
 
 .actions button {
-  border: none;
-  background: transparent;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 10px;
   cursor: pointer;
   color: var(--text);
   display: flex;
@@ -220,4 +258,146 @@
   cursor: pointer;
   color: var(--text);
   font-size: 14px;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .ordersPage {
+    padding: 24px;
+  }
+
+  .tableWrapper {
+    overflow-x: auto;
+  }
+
+  .tableHeader,
+  .tableRow {
+    min-width: 900px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .ordersPage {
+    padding: 84px 16px 20px;
+    min-height: 100vh;
+  }
+
+  .topBar h1 {
+    font-size: 26px;
+  }
+
+  .topBar p {
+    font-size: 14px;
+  }
+
+  .tableWrapper {
+    padding: 16px;
+    border-radius: 20px;
+    overflow: visible;
+  }
+
+  .tabs {
+    width: 100%;
+    padding: 5px;
+    gap: 6px;
+  }
+
+  .tabButton {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .tableActions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .searchBox,
+  .filterButton {
+    width: 100%;
+    height: 56px;
+  }
+
+  .searchBox input {
+    font-size: 15px;
+  }
+
+  .tableHeader {
+    display: none;
+  }
+
+  .tableBody {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .tableRow {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+  }
+
+  .tableRow > span:first-child {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .customerCell strong,
+  .customerCell p {
+    white-space: normal;
+  }
+
+  .statusBadge {
+    display: inline-flex;
+    width: fit-content;
+  }
+
+  .actions {
+    justify-content: flex-end;
+    padding-top: 4px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination {
+    width: 100%;
+  }
+
+  .pagination button {
+    flex: 1;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 420px) {
+  .ordersPage {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .topBar h1 {
+    font-size: 24px;
+  }
+
+  .tableWrapper {
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  .tableRow {
+    padding: 14px;
+  }
 }

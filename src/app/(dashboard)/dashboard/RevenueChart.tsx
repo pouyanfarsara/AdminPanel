@@ -12,6 +12,7 @@ export default function RevenueChart({ data }: RevenueChartProps) {
   return (
     <div className={styles.card}>
       <h3>Revenue Overview</h3>
+      <p>Count: {data.length}</p>
 
       <div className={styles.chartWrapper}>
         <div className={styles.chart}>

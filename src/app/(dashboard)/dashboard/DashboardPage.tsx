@@ -1,13 +1,4 @@
-
 import styles from "./DashboardPage.module.css";
-
-import {
-  statsData,
-  revenueData,
-  salesCategories,
-  topSellingProducts,
-  recentOrders,
-} from "../../data/dashboardData";
 
 import StatCard from "./StatCard";
 import RevenueChart from "./RevenueChart";
@@ -15,7 +6,27 @@ import SalesCategory from "./SalesCategory";
 import TopSellingProducts from "./TopSellingProducts";
 import RecentOrders from "./RecentOrders";
 
-export default function DashboardPage() {
+async function getDashboardData() {
+const res = await fetch("http://10.10.201.193:3000/api/dashboard", {
+  cache: "no-store",
+});
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch dashboard data");
+  }
+
+  return res.json();
+}
+
+export default async function DashboardPage() {
+  const {
+    statsData,
+    revenueData,
+    salesCategories,
+    topSellingProducts,
+    recentOrders,
+  } = await getDashboardData();
+
   return (
     <div className={styles.dashboardLayout}>
       <div className={styles.mainSection}>
@@ -29,7 +40,7 @@ export default function DashboardPage() {
           </div>
 
           <section className={styles.statsGrid}>
-            {statsData.map((item) => (
+            {statsData.map((item: any) => (
               <StatCard key={item.id} item={item} />
             ))}
           </section>

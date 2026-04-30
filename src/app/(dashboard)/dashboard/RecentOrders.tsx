@@ -1,5 +1,5 @@
 import styles from "./RecentOrders.module.css";
-import type { OrderItem } from "../../data/dashboardData";
+import type { OrderItem } from "../../lib/dashboardData";
 
 type RecentOrdersProps = {
   items: OrderItem[];

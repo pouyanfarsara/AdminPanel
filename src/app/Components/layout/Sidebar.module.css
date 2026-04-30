@@ -12,8 +12,10 @@
     padding 0.3s ease,
     background 0.2s ease,
     border-color 0.2s ease,
-    color 0.2s ease;
+    color 0.2s ease,
+    transform 0.3s ease;
   overflow: hidden;
+  z-index: 1001;
 }
 
 .sidebarCollapsed {
@@ -39,6 +41,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .logoText {
@@ -114,6 +117,27 @@
   transform: rotate(180deg);
 }
 
+.mobileLogout {
+  margin-top: 12px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  border-radius: 0;
+}
+.mobileMenuBtn {
+  display: none;
+  background: #4f46e5;
+
+}
+
+.mobileCloseBtn {
+  display: none;
+}
+
+.backdrop {
+  display: none;
+}
+
+/* Tablet */
 @media (max-width: 999px) {
   .sidebar {
     width: 88px;
@@ -121,19 +145,85 @@
   }
 }
 
-@media (max-width: 699px) {
+/* Mobile */
+@media (max-width: 768px) {
+  .mobileMenuBtn {
+    display: flex;
+    position: fixed;
+    background: #4f46e5;
+    top: 16px;
+    left: 16px;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    z-index: 1002;
+    cursor: pointer;
+  }
+
   .sidebar {
-    width: 100%;
-    min-height: auto;
-    border-right: none;
-    border-bottom: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    max-width: 82vw;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 20px 16px;
+    border-right: 1px solid var(--border);
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
   }
 
   .sidebarCollapsed {
-    width: 100%;
+    width: 280px;
+    max-width: 82vw;
+    padding: 20px 16px;
   }
 
   .logoBox {
-    margin-bottom: 0;
+    margin-bottom: 28px;
+  }
+
+  .logoText {
+    font-size: 20px;
+  }
+
+  .mobileCloseBtn {
+    display: flex;
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    z-index: 1000;
+  }
+
+  .navItem {
+    justify-content: flex-start;
+    padding: 12px 14px;
+  }
+
+  .collapseBtn {
+    display: none;
   }
 }

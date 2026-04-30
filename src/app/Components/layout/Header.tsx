@@ -11,6 +11,7 @@ import {
   UserRound,
 } from "lucide-react";
 import Button from "../button/Button";
+import Link from "next/link";
 
 export default function Header() {
   const [search, setSearch] = useState<string>("");
@@ -79,10 +80,11 @@ export default function Header() {
             <div className={styles.dropdown}>
               <p className={styles.dropdownItem}>Profile</p>
               <p className={styles.dropdownItem}>Settings</p>
-              <p className={styles.dropdownItem}>
+              <Link href="/login"> <p className={styles.dropdownItem}>
                 <LogOut size={14} />
                 Logout
-              </p>
+               
+              </p></Link>
             </div>
           )}
         </div>
