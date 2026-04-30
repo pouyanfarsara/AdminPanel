@@ -7,9 +7,9 @@ import TopSellingProducts from "./TopSellingProducts";
 import RecentOrders from "./RecentOrders";
 
 async function getDashboardData() {
-const res = await fetch("http://10.10.201.193:3000/api/dashboard", {
-  cache: "no-store",
-});
+  const res = await fetch("/api/dashboard", {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch dashboard data");
