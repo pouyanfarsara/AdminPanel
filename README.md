@@ -1,40 +1,60 @@
 # 🚀 Admin Panel Dashboard
 
-A modern and clean **Admin Dashboard** built with **Next.js**, **TypeScript**, and **CSS Modules**.  
-Designed to simulate a real-world admin panel experience with scalable architecture and typed data handling.
+A modern **full-stack Admin Dashboard** built with **Next.js (App Router)**, **TypeScript**, and **CSS Modules**.  
+This project simulates a real-world admin panel with both frontend UI and backend API logic.
+
+---
+
+## 🌐 Live Demo
+
+https://admin-panel-xwiv.vercel.app/
 
 ---
 
 ## ✨ Features
 
-- 🧭 Sidebar navigation
+- 🧭 Responsive sidebar navigation (mobile + desktop)
 - 🔍 Search functionality
-- 📦 Product management page
+- 📦 Product management (Add / Edit / Delete)
 - 🧾 Orders management page
-- 🌙 Dark mode support (Context + CSS variables)
-- 🎯 Dynamic routing (Next.js App Router)
-- 🧩 Reusable components
-- 🧠 Strong TypeScript typing (union types, state typing)
-- 📱 Desktop-first design (optimized for large screens)
+- 🌙 Dark mode (Context + CSS variables)
+- 📱 Fully responsive design
+- 🧩 Reusable component architecture
+- 🧠 Strong TypeScript typing
+- 🔄 Dynamic routing (Next.js App Router)
+- 🚪 Logout functionality
 
 ---
 
-## 📸 Screenshots
+## 🔌 Backend (API)
 
-| Orders | Dark Mode |
+This project includes backend logic using **Next.js API Routes**:
 
-| ![](/screenshots/orders.jpg)
+- `GET /api/dashboard` → Dashboard data
+- `GET /api/products` → Get products
+- `POST /api/products` → Add product
+- `PATCH /api/products?id=` → Edit product
+- `DELETE /api/products?id=` → Delete product
 
 ---
 
 ## 🛠 Tech Stack
 
-- ⚡ **Next.js**
-- ⚛️ **React**
-- 🔷 **TypeScript**
-- 🎨 **CSS Modules**
-- 🧱 **Lucide Icons**
-- 🎨 **Material UI (Dialog / Modal)**
+- ⚡ Next.js (App Router)
+- ⚛️ React
+- 🔷 TypeScript
+- 🎨 CSS Modules
+- 🎨 Material UI (Modal)
+- 🧱 Lucide Icons
+- ☁️ Vercel (Deployment)
+
+---
+
+## 📸 Screenshots
+
+| Dashboard | Orders |
+|----------|--------|
+| ![](./screenshots/dashboard.png) | ![](./screenshots/orders.png) |
 
 ---
 
@@ -43,8 +63,8 @@ Designed to simulate a real-world admin panel experience with scalable architect
 ```bash
 src/
   app/
-    layout.tsx        # Shared layout (Sidebar + Header)
-    page.tsx          # Dashboard
+    layout.tsx
+    page.tsx
 
     products/
       page.tsx
@@ -52,13 +72,18 @@ src/
     orders/
       page.tsx
 
-    components/
-      layout/
-        Header.tsx
-        Sidebar.tsx
+    api/
+      products/route.ts
+      dashboard/route.ts
 
-      products/
-        ProductsPage.tsx
+  components/
+    layout/
+      Header.tsx
+      Sidebar.tsx
 
-      orders/
-        OrdersPage.tsx
+    products/
+      ProductsPage.tsx
+      ProductModal.tsx
+
+    orders/
+      OrdersPage.tsx
