@@ -10,28 +10,24 @@ export async function POST(request: Request) {
   if (!body.name || !body.name.trim()) {
     return Response.json(
       { message: "Product name is required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   if (!body.description || !body.description.trim()) {
     return Response.json(
       { message: "Description is required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   if (!body.sku || !body.sku.trim()) {
-    return Response.json(
-      { message: "SKU is required" },
-      { status: 400 }
-    );
+    return Response.json({ message: "SKU is required" }, { status: 400 });
   }
 
   const newProduct = {
     id: Date.now(),
     name: body.name,
-    description: body.description,
     category: body.category || "Accessories",
     sku: body.sku,
     price: 0,
@@ -75,14 +71,7 @@ export async function PATCH(request: Request) {
   if (!body.name || !body.name.trim()) {
     return Response.json(
       { message: "Product name is required" },
-      { status: 400 }
-    );
-  }
-
-  if (!body.description || !body.description.trim()) {
-    return Response.json(
-      { message: "Description is required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -93,7 +82,7 @@ export async function PATCH(request: Request) {
   products[productIndex] = {
     ...products[productIndex],
     name: body.name,
-    description: body.description,
+
     category: body.category,
     sku: body.sku,
   };
