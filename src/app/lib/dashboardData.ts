@@ -77,18 +77,37 @@ export const topSellingProducts: ProductItem[] = [
 
 export const recentOrders: OrderItem[] = [
   { id: "#12345", customer: "John Doe", price: "$129.99", status: "Delivered" },
-  { id: "#12344", customer: "Jane Smith", price: "$89.99", status: "Processing" },
-  { id: "#12343", customer: "Mike Johnson", price: "$199.99", status: "Shipped" },
-  { id: "#12342", customer: "Sarah Williams", price: "$59.99", status: "Pending" },
+  {
+    id: "#12344",
+    customer: "Jane Smith",
+    price: "$89.99",
+    status: "Processing",
+  },
+  {
+    id: "#12343",
+    customer: "Mike Johnson",
+    price: "$199.99",
+    status: "Shipped",
+  },
+  {
+    id: "#12342",
+    customer: "Sarah Williams",
+    price: "$59.99",
+    status: "Pending",
+  },
 ];
-
 
 export type Product = {
   id: number;
   name: string;
+  description: string;
   category: string;
+  sku: string;
   price: number;
   stock: number;
+  status: "In Stock" | "Low Stock" | "Out of Stock";
+  icon: null;
+  
 };
 
 export const products: Product[] = [
