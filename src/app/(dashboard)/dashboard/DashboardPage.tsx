@@ -7,7 +7,7 @@ import TopSellingProducts from "./TopSellingProducts";
 import RecentOrders from "./RecentOrders";
 
 async function getDashboardData() {
-  const res = await fetch("/api/dashboard", {
+  const res = await fetch("https://admin-panel-avws.vercel.app/api/dashboard", {
     cache: "no-store",
   });
 
