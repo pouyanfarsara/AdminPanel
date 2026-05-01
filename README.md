@@ -66,6 +66,9 @@ src/
     layout.tsx
     page.tsx
 
+    login/
+      page.tsx   
+
     products/
       page.tsx
 
