@@ -54,7 +54,7 @@ This project includes backend logic using **Next.js API Routes**:
 
 | Dashboard | Orders |
 |----------|--------|
-| ![](./screenshots/dashboard.png) | ![](./screenshots/orders.png) |
+| ![](/screenshots/dashboard.jpg) | ![](/screenshots/orders.jpg) |
 
 ---
 
