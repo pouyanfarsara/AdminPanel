@@ -107,29 +107,40 @@ export type Product = {
   stock: number;
   status: "In Stock" | "Low Stock" | "Out of Stock";
   icon: null;
-  
 };
 
 export const products: Product[] = [
   {
     id: 1,
     name: "Wireless Headphones",
+    description: "High quality wireless headphones",
     category: "Electronics",
+    sku: "WH-001",
     price: 99,
     stock: 24,
+    status: "In Stock",
+    icon: null,
   },
   {
     id: 2,
     name: "Smart Watch",
+    description: "Modern smart watch",
     category: "Electronics",
+    sku: "SW-002",
     price: 199,
     stock: 12,
+    status: "Low Stock",
+    icon: null,
   },
   {
     id: 3,
     name: "Laptop Stand",
+    description: "Ergonomic laptop stand",
     category: "Accessories",
+    sku: "LS-003",
     price: 49,
     stock: 35,
+    status: "In Stock",
+    icon: null,
   },
 ];
