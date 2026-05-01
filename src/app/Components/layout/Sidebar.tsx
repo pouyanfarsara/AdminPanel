@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "@/app/context/ThemeContext";
 import Button from "../button/Button";
+import { useRouter } from "next/navigation";
 
 type MenuItem = {
   id: number;
@@ -47,6 +48,7 @@ export default function Sidebar() {
   const [isIconOnly, setIsIconOnly] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const router = useRouter();
 
   const { theme, toggleTheme } = useTheme();
 
@@ -74,11 +76,7 @@ export default function Sidebar() {
 
   const handleLogout = () => {
     setIsMobileOpen(false);
-
-    // اینجا لاگ‌اوت واقعی پروژه‌ات رو وصل کن
-    // مثلا:
-    // router.push("/login");
-    console.log("logout");
+    router.replace("/login");
   };
 
   const shouldHideLabels = isMobile ? false : isCollapsed || isIconOnly;
